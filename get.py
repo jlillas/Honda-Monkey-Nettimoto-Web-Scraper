@@ -2,6 +2,17 @@ from seleniumbase import Driver
 import time
 import random
 
+# Define the filename
+filename = 'data.txt'
+
+# Open and read the contents of the file
+with open(filename, 'r') as file:
+    page = int(file.read())
+
+# Print the content (for verification)
+print(page)
+
+
 def scrape_page(base_url, page_number):
     # Initialize the driver
     print("Starting the browser...")
@@ -37,8 +48,8 @@ def scrape_page(base_url, page_number):
 
 if __name__ == "__main__":
     # Base URL for the pages
-    base_url = 'https://www.nettimoto.com/Honda/Monkey'
+    base_url = 'https://www.nettimoto.com/honda/monkey'
     
     # Loop through page numbers (saving pages 1 to 3 in this example)
-    for page_number in range(1, 5):
+    for page_number in range(1, (page + 1)):
         scrape_page(base_url, page_number)
