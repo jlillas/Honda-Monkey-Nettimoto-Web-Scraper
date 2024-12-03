@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import datetime
 
@@ -46,6 +47,9 @@ profit = {profit}
 save = str(input("y or n: "))
 
 if save == "y":
+    # Ensure the 'save' directory exists
+    folder_name = "save"
+    os.makedirs(folder_name, exist_ok=True)
 
     # Get the current date and time
     current_time = datetime.datetime.now()
@@ -53,11 +57,13 @@ if save == "y":
     # Format the date and time to match the desired file name format
     file_name = current_time.strftime("Honda_Monkey_Prices_%Y-%m-%d_%H-%M.txt")
 
+    # Define the full file path
+    full_path = os.path.join(folder_name, file_name)
+
     # Save the content to the file
-    with open(file_name, "w") as file:
+    with open(full_path, "w") as file:
         file.write(content)
 
-    print(f"File '{file_name}' has been created with the specified content.")
-    
-if save != "y":
-    print("this did not save.")
+    print(f"File '{file_name}' has been created in the '{folder_name}' folder with the specified content.")
+else:
+    print("This did not save.")
